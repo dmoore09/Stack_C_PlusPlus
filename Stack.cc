@@ -10,7 +10,7 @@ Stack::Stack() {
 
 // Cleans up memory before the Stack's destruction.
 Stack::~Stack() {
-
+	head->next = NULL;
 }
 
 // Pushes value onto the top of the stack.
@@ -24,21 +24,33 @@ void Stack::push(int value) {
 	//update pointers
 	newNode.next = head->next;
 	head->next = newNode;
-	//
+	//increase number of nodes by 1
 	num_elements++;
 }
 
 // Pops the top-most value off the stack and returns its value.
 int Stack::pop() {
-	num_elements--;
-	return -1;
+	//pointer to node being removed
+	Node* temp = head->next;
+	int tempVal = temp->value;
+	
+	//change the pointer of head
+	head->next = head->next->next;
+	//change the pointer of node being removed
+	temp->next = null;
+	
+	//decrease number of elements by 1
+	num_elements--
+	//return value of node removed
+	return tempVal;
 }
 
 // Returns the value at the top of the stack.  Works similarly to pop(), but
 // retains the internal structure of the stack.  That is, it does not remove
 // the top-most element.
 int Stack::getTopElement() const {
-	return -1;
+	int topVal = head->next->value;
+	return topVal;
 }
 
 // Returns the number of elements currently in the stack.
